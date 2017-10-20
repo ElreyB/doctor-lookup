@@ -7,10 +7,18 @@ export class DoctorLookup {
     .then(function(response){
       const doctors = response.data;
       doctors.forEach(function(doctor){
-        $("#doctor-results").append(`<li>${doctor.profile.first_name} ${doctor.profile.last_name}</li>`)
+        $("#doctor-results").append(
+          `<li class="well">
+            <p>Dr. ${doctor.profile.first_name} ${doctor.profile.last_name},${doctor.profile.title}</p>
+            <p>${doctor.practices.visit_address.strea}</p>
+          </li>`)
       });
     }).fail(function(error){
       $('.errors').text(`There was an error processing your request: ${error.responseText}. Please try again.`);
     });
+  }
+
+  booleanConverter(booleanResponse){
+    return booleanResponse ? "Yes" : "No";
   }
 }
