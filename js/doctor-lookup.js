@@ -10,7 +10,7 @@ export class DoctorLookup {
         $("#doctor-results").append(
           `<li class="well">
             <p>Dr. ${doctor.profile.first_name} ${doctor.profile.last_name},${doctor.profile.title}</p>
-            <p>${doctor.practices.visit_address.strea }</p>
+            <p>${doctor.practices[0].visit_address.street}</p> <p>${doctor.practices[0].visit_address.city},${doctor.practices[0].visit_address.state} ${doctor.practices[0].visit_address.zip}</p>
           </li>`)
       });
     }).fail(function(error){
