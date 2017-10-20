@@ -5,12 +5,12 @@ $(document).ready(function(){
 
   $(".all").click(function(){
     doctorsResult.getDoctors();
-  })
+  });
 
   $("form#issue-form").submit(function(e){
     e.preventDefault();
-    const userIsssueInput = $("input#issue").val();
-    doctorsResult.getByIssue(userIsssueInput);
+    const userIssueInput = $("input#issue").val();
+    doctorsResult.getByIssue(userIssueInput);
   });
 
   $("form#name-form").submit(function(e){
