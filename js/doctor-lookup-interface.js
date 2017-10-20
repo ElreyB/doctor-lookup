@@ -7,9 +7,15 @@ $(document).ready(function(){
     doctorsResult.getDoctors();
   })
 
-  $("form.issue-form").submit(function(e){
+  $("form#issue-form").submit(function(e){
     e.preventDefault();
-    const userIsssue = $("input#issue").val();
-    doctorsResult.getByIssue(userIsssue);
+    const userIsssueInput = $("input#issue").val();
+    doctorsResult.getByIssue(userIsssueInput);
+  });
+
+  $("form#name-form").submit(function(e){
+    e.preventDefault();
+    const userDoctorNameInput = $("input#name").val();
+    doctorsResult.getByName(userDoctorNameInput);
   });
 });
