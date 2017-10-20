@@ -8,7 +8,7 @@ export class DoctorLookup {
       doctors.forEach(function(doctor){
         $("#doctor-results").append(
           `<li class="well col-sm-4 col-md-4">
-            <img src=${doctor.profile.image_url} alt="Doctor's photo">
+            <center><img src=${doctor.profile.image_url} alt="Doctor's photo"></center>
               <p>Dr. ${doctor.profile.first_name} ${doctor.profile.last_name},${doctor.profile.title}</p>
               <p>${doctor.practices[0].visit_address.street}</p> <p>${doctor.practices[0].visit_address.city},${doctor.practices[0].visit_address.state} ${doctor.practices[0].visit_address.zip}</p>
               <p>${DoctorLookup.phoneNumberConverter(doctor.practices[0].phones[0].number)}</p>
@@ -31,7 +31,7 @@ export class DoctorLookup {
         doctors.forEach(function(doctor){
           $("#doctor-results").append(
             `<li class="well col-sm-4 col-md-4">
-              <img src=${doctor.profile.image_url} alt="Doctor's photo">
+              <center><img src=${doctor.profile.image_url} alt="Doctor's photo"></center>
                 <p>Dr. ${doctor.profile.first_name} ${doctor.profile.last_name},${doctor.profile.title}</p>
                 <p>${doctor.practices[0].visit_address.street}</p> <p>${doctor.practices[0].visit_address.city},${doctor.practices[0].visit_address.state} ${doctor.practices[0].visit_address.zip}</p>
                 <p>${DoctorLookup.phoneNumberConverter(doctor.practices[0].phones[0].number)}</p>
@@ -57,7 +57,7 @@ export class DoctorLookup {
         doctors.forEach(function(doctor){
           $("#doctor-results").append(
             `<li class="well col-sm-4 col-md-4">
-              <img src=${doctor.profile.image_url} alt="Doctor's photo">
+              <center><img src=${doctor.profile.image_url} alt="Doctor's photo"></center>
                 <p>Dr. ${doctor.profile.first_name} ${doctor.profile.last_name},${doctor.profile.title}</p>
                 <p>${doctor.practices[0].visit_address.street}</p> <p>${doctor.practices[0].visit_address.city},${doctor.practices[0].visit_address.state} ${doctor.practices[0].visit_address.zip}</p>
                 <p>${DoctorLookup.phoneNumberConverter(doctor.practices[0].phones[0].number)}</p>
