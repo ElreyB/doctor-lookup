@@ -5,3 +5,7 @@ img {
 .web-container {
   margin-top: 10px;
 }
+
+#wait, .results-container {
+  display: none;
+}

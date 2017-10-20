@@ -3,6 +3,14 @@ import { DoctorLookup } from './../js/doctor-lookup.js';
 $(document).ready(function(){
   const doctorsResult = new DoctorLookup();
 
+  $(document).ajaxStart(function(){
+     $("#wait").css("display", "block");
+   });
+   $(document).ajaxComplete(function(){
+     $("#wait").css("display", "none");
+     $(".results-container").show();
+   });
+
   $(".all").click(function(){
     doctorsResult.getDoctors();
   });
