@@ -1,7 +1,6 @@
 export class DoctorLookup {
   constructor(){
   }
-
   getDoctors(){
     $.get(`https://api.betterdoctor.com/2016-03-01/doctors?location=47.608013, -122.335167,100&skip=0&limit=100&user_key=3df2d26e3fe30c15f597ce18fedf4144`)
     .then(function(response){
@@ -15,7 +14,7 @@ export class DoctorLookup {
               <p>${DoctorLookup.phoneNumberConverter(doctor.practices[0].phones[0].number)}</p>
               <div class="web-container">
                 <p>Accepting New Patients: ${DoctorLookup.booleanConverter(doctor.practices[0].accepts_new_patients)}</p>
-                <a href=${doctor.practices[0].website}><button type="button" class="btn btn-primary">Visit Doctor's Website</button></a>
+                <a href=${doctor.practices[0].website}><button type="button" class="btn btn-info">Visit Doctor's Website</button></a>
               </div>
           </li>`);
       });
@@ -38,7 +37,7 @@ export class DoctorLookup {
                 <p>${DoctorLookup.phoneNumberConverter(doctor.practices[0].phones[0].number)}</p>
                 <div class="web-container">
                   <p>Accepting New Patients: ${DoctorLookup.booleanConverter(doctor.practices[0].accepts_new_patients)}</p>
-                  <a href=${doctor.practices[0].website}><button type="button" class="btn btn-primary">Visit Doctor's Website</button></a>
+                  <a href=${doctor.practices[0].website}><button type="button" class="btn btn-info">Visit Doctor's Website</button></a>
                 </div>
             </li>`);
         });
@@ -51,7 +50,7 @@ export class DoctorLookup {
   }
 
   getByName(name){
-    $.get(`https://api.betterdoctor.com/2016-03-01/doctors?name=${name}&location=47.608013%2C%20-122.335167%2C100&skip=0&limit=100&user_key=3df2d26e3fe30c15f597ce18fedf4144`)
+    $.get(`https://api.betterdoctor.com/2016-03-01/doctors?name=${name}&location=47.608013%2C%20-122.335167%2C100&skip=0&limit=40&user_key=3df2d26e3fe30c15f597ce18fedf4144`)
     .then(function(response){
       const doctors = response.data;
       if(typeof doctors[0] !== 'undefined'){
@@ -64,7 +63,7 @@ export class DoctorLookup {
                 <p>${DoctorLookup.phoneNumberConverter(doctor.practices[0].phones[0].number)}</p>
                 <div class="web-container">
                   <p>Accepting New Patients: ${DoctorLookup.booleanConverter(doctor.practices[0].accepts_new_patients)}</p>
-                  <a href=${doctor.practices[0].website}><button type="button" class="btn btn-primary">Visit Doctor's Website</button></a>
+                  <a href=${doctor.practices[0].website}><button type="button" class="btn btn-info">Visit Doctor's Website</button></a>
                 </div>
             </li>`);
         });
@@ -88,4 +87,5 @@ export class DoctorLookup {
     convertedNumber = numbers.join("");
     return convertedNumber;
   }
+
 }
