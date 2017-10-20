@@ -10,14 +10,24 @@
   <body>
     <div class="container">
       <div class="well">
-        <button type="button" name="button" class="btn">Search</button>
+        <form class="issue-form">
+          <div class="form-group">
+            <label for="issue">Enter Medical Issue</label>
+            <input type="text" id="issue" class="form-control">
+          </div>
+          <button type="submit" class="btn">Search</button>
+        </form>
+        <br>
+        <div class="">
+          <button type="button" name="button" class="btn all">Search</button>
+        </div>
       </div>
       <div class="errors">
       </div>
       <div class="results-container">
         <h3>Doctors</h3>
         <ul id="doctor-results" class="row row-eq-height">
-          
+
         </ul>
       </div>
     </div>
