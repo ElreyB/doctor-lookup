@@ -11,6 +11,7 @@ export class DoctorLookup {
           `<li class="well">
             <p>Dr. ${doctor.profile.first_name} ${doctor.profile.last_name},${doctor.profile.title}</p>
             <p>${doctor.practices[0].visit_address.street}</p> <p>${doctor.practices[0].visit_address.city},${doctor.practices[0].visit_address.state} ${doctor.practices[0].visit_address.zip}</p>
+            <p>${doctor.practices[0].phones[0].number}</p>
           </li>`)
       });
     }).fail(function(error){
@@ -20,5 +21,14 @@ export class DoctorLookup {
 
   booleanConverter(booleanResponse){
     return booleanResponse ? "Yes" : "No";
+  }
+
+  phoneNumberConverter(phoneNumber){
+    let convertedNumber;
+    let numbers = phoneNumber.split("");
+    numbers.splice(3,0,"-");
+    numbers.splice(7,0,"-");
+    convertedNumber = numbers.join("");
+    return convertedNumber;
   }
 }

@@ -14,4 +14,8 @@ describe('DoctorLookup', function(){
   it('should return "No" when give false as an argument', function(){
     expect(doctorsResult.booleanConverter(false)).toEqual("No")
   });
+
+  it('should return phone number in user friendly form', function(){
+    expect(doctorsResult.phoneNumberConverter("1111111111")).toEqual("111-111-1111")
+  });
 });
