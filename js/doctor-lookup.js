@@ -1,94 +1,75 @@
-var apiKey = require('./../.env').apiKey;
+import { apiKey } from "./../.env";
+import { lineCreater } from "./../helper.js";
 
 export class DoctorLookup {
-  constructor(){
-  }
-  getDoctors(){
-    console.log(apiKey);
-    $.get(`https://api.betterdoctor.com/2016-03-01/doctors?location=47.608013, -122.335167,100&skip=0&limit=100&user_key=${apiKey}`)
-    .then(function(response){
-      const doctors = response.data;
-      doctors.forEach(function(doctor){
-        $("#doctor-results").append(
-          `<li class="well col-sm-4 col-md-4">
-            <center><img src=${doctor.profile.image_url} alt="Doctor's photo"></center>
-              <p>Dr. ${doctor.profile.first_name} ${doctor.profile.last_name},${doctor.profile.title}</p>
-              <p>${doctor.practices[0].visit_address.street}</p> <p>${doctor.practices[0].visit_address.city},${doctor.practices[0].visit_address.state} ${doctor.practices[0].visit_address.zip}</p>
-              <p>${DoctorLookup.phoneNumberConverter(doctor.practices[0].phones[0].number)}</p>
-              <div class="web-container">
-                <p>Accepting New Patients: ${DoctorLookup.booleanConverter(doctor.practices[0].accepts_new_patients)}</p>
-                <a href=${doctor.practices[0].website}><button type="button" class="btn btn-info">Visit Doctor's Website</button></a>
-              </div>
-          </li>`);
+  constructor() {}
+  getDoctors() {
+    $.get(
+      `https://api.betterdoctor.com/2016-03-01/doctors?location=47.608013, -122.335167,100&skip=0&limit=100&user_key=${apiKey}`
+    )
+      .then(function(response) {
+        const doctorsByIssue = response.data;
+        lineCreater(doctorsByIssue);
+      })
+      .fail(function(error) {
+        $(".errors").text(
+          `There was an error processing your request: ${error.responseText}. Please try again.`
+        );
       });
-    }).fail(function(error){
-      $('.errors').text(`There was an error processing your request: ${error.responseText}. Please try again.`);
-    });
   }
 
-  getByIssue(issue){
-    $.get(`https://api.betterdoctor.com/2016-03-01/doctors?query=${issue}&location=47.608013, -122.335167,100&skip=0&limit=100&user_key=${apiKey}`)
-    .then(function(response){
-      const doctors = response.data;
-      if(typeof doctors[0] !== 'undefined'){
-        doctors.forEach(function(doctor){
+  getByIssue(issue) {
+    $.get(
+      `https://api.betterdoctor.com/2016-03-01/doctors?query=${issue}&location=47.608013, -122.335167,100&skip=0&limit=100&user_key=${apiKey}`
+    )
+      .then(function(response) {
+        const doctorsByIssue = response.data;
+        if (typeof doctorsByIssue[0] !== "undefined") {
+          lineCreater(doctorsByIssue);
+        } else {
           $("#doctor-results").append(
-            `<li class="well col-sm-4 col-md-4">
-              <center><img src=${doctor.profile.image_url} alt="Doctor's photo"></center>
-                <p>Dr. ${doctor.profile.first_name} ${doctor.profile.last_name},${doctor.profile.title}</p>
-                <p>${doctor.practices[0].visit_address.street}</p> <p>${doctor.practices[0].visit_address.city},${doctor.practices[0].visit_address.state} ${doctor.practices[0].visit_address.zip}</p>
-                <p>${DoctorLookup.phoneNumberConverter(doctor.practices[0].phones[0].number)}</p>
-                <div class="web-container">
-                  <p>Accepting New Patients: ${DoctorLookup.booleanConverter(doctor.practices[0].accepts_new_patients)}</p>
-                  <a href=${doctor.practices[0].website}><button type="button" class="btn btn-info">Visit Doctor's Website</button></a>
-                </div>
-            </li>`);
-        });
-      }else{
-        $("#doctor-results").append(`<li><span class="line-header">Sorry! Currently there are no doctors in the area that specializes in that issue. Please, try a different entry 😷 😷 😷.</span></li><br>`);
-      }
-    }).fail(function(error){
-      $('.errors').text(`There was an error processing your request: ${error.responseText}. Please try again.`);
-    });
+            `<li><span class="line-header">Sorry! Currently there are no doctors in the area that specializes in that issue. Please, try a different entry 😷 😷 😷.</span></li><br>`
+          );
+        }
+      })
+      .fail(function(error) {
+        $(".errors").text(
+          `There was an error processing your request: ${error.responseText}. Please try again.`
+        );
+      });
   }
 
-  getByName(name){
-    $.get(`https://api.betterdoctor.com/2016-03-01/doctors?name=${name}&location=47.608013%2C%20-122.335167%2C100&skip=0&limit=40&user_key=${apiKey}`)
-    .then(function(response){
-      const doctors = response.data;
-      if(typeof doctors[0] !== 'undefined'){
-        doctors.forEach(function(doctor){
+  getByName(name) {
+    $.get(
+      `https://api.betterdoctor.com/2016-03-01/doctors?name=${name}&location=47.608013%2C%20-122.335167%2C100&skip=0&limit=40&user_key=${apiKey}`
+    )
+      .then(function(response) {
+        const doctorsByName = response.data;
+        if (typeof doctorsByName[0] !== "undefined") {
+          lineCreater(doctorsByName);
+        } else {
           $("#doctor-results").append(
-            `<li class="well col-sm-4 col-md-4">
-              <center><img src=${doctor.profile.image_url} alt="Doctor's photo"></center>
-                <p>Dr. ${doctor.profile.first_name} ${doctor.profile.last_name},${doctor.profile.title}</p>
-                <p>${doctor.practices[0].visit_address.street}</p> <p>${doctor.practices[0].visit_address.city},${doctor.practices[0].visit_address.state} ${doctor.practices[0].visit_address.zip}</p>
-                <p>${DoctorLookup.phoneNumberConverter(doctor.practices[0].phones[0].number)}</p>
-                <div class="web-container">
-                  <p>Accepting New Patients: ${DoctorLookup.booleanConverter(doctor.practices[0].accepts_new_patients)}</p>
-                  <a href=${doctor.practices[0].website}><button type="button" class="btn btn-info">Visit Doctor's Website</button></a>
-                </div>
-            </li>`);
-        });
-      }else{
-        $("#doctor-results").append(`<li><span class="line-header">Sorry! Currently there are no doctors in the area by that name. Please, try a different entry 👨‍⚕️ 👩‍⚕️.</span></li><br>`);
-      }
-    }).fail(function(error){
-      $('.errors').text(`There was an error processing your request: ${error.responseText}. Please try again.`);
-    });
+            `<li><span class="line-header">Sorry! Currently there are no doctors in the area by that name. Please, try a different entry 👨‍⚕️ 👩‍⚕️.</span></li><br>`
+          );
+        }
+      })
+      .fail(function(error) {
+        $(".errors").text(
+          `There was an error processing your request: ${error.responseText}. Please try again.`
+        );
+      });
   }
 
-  static booleanConverter(booleanResponse){
+  static booleanConverter(booleanResponse) {
     return booleanResponse ? "Yes" : "No";
   }
 
-  static phoneNumberConverter(phoneNumber){
+  static phoneNumberConverter(phoneNumber) {
     let convertedNumber;
     let numbers = phoneNumber.split("");
-    numbers.splice(3,0,"-");
-    numbers.splice(7,0,"-");
+    numbers.splice(3, 0, "-");
+    numbers.splice(7, 0, "-");
     convertedNumber = numbers.join("");
     return convertedNumber;
   }
-
 }

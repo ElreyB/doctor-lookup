@@ -6,6 +6,7 @@ function clearList(){
 function hideheaders(){
   $(".main-header, .area-header, .issue-header, .name-header").addClass("hide");
 }
+
 $(document).ready(function(){
   const doctorsResult = new DoctorLookup();
 
