@@ -1,57 +1,68 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="build/css/vendor.css">
-    <link rel="stylesheet" href="http://getbootstrap.com.vn/examples/equal-height-columns/equal-height-columns.css">
-    <script src="build/js/vendor.min.js"></script>
-    <script type="text/javascript" src="build/js/app.js"></script>
-    <meta charset="utf-8">
-    <title>Doctor Lookup</title>
-  </head>
-  <body>
-    <div class="container">
-      <div class="page-header">
-        <h1 class="main-header">Doctor Lookup</h1>
-        <h1 class="area-header">Doctors in Seattle <button type="button" class="btn return-home btn-info">Home</button></h1>
-        <h1 class="issue-header">Doctors by Issue <button type="button" class="btn return-home btn-info">Home</button></h1>
-        <h1 class="name-header">Doctors by Name <button type="button" class="btn return-home btn-info">Home</button></h1>
-      </div>
-      <div class="row">
-          <div class="col-sm-4 col-md-4">
-            <form id="issue-form">
-              <div class="form-group">
-                <label for="issue">Enter Medical Issue</label>
-                <input type="text" id="issue" class="form-control">
-              </div>
-              <button type="submit" class="btn btn-info">Search</button>
-            </form>
-          </div>
-          <div class="well col-sm-4 col-md-4">
-            <form id="name-form">
-              <div class="form-group">
-                <label for="issue">Enter Doctor's Name</label>
-                <input type="text" id="name" class="form-control">
-              </div>
-              <button type="submit" class="btn btn-info">Search</button>
-            </form>
-          </div>
-          <div class="well col-sm-4 col-md-4">
-            <div class="all-doctors">
-              <p class="search">All Searches will list 100 doctors in a 100 mile radius of Seattle.</p>
-              <button type="button" name="button" class="btn all btn-info">Local Doctors</button>
-            </div>
-          </div>
-      </div>
-      <div class="errors">
-      </div>
-      <div id="wait">
-        <center><img src="images/loading-doctors.gif" alt="Hospital Gif"></center>
-      </div>
-      <div class="results-container">
-        <ul id="doctor-results" class="row equal">
 
-        </ul>
+<head>
+  <link rel="stylesheet" href="build/css/vendor.css">
+  <link rel="stylesheet" href="http://getbootstrap.com.vn/examples/equal-height-columns/equal-height-columns.css">
+  <script src="build/js/vendor.min.js"></script>
+  <script type="text/javascript" src="build/js/app.js"></script>
+  <meta charset="utf-8">
+  <title>Doctor Lookup</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="page-header">
+      <h1 class="main-header">Doctor Lookup</h1>
+      <h1 class="area-header">Doctors in Seattle
+        <button type="button" class="btn return-home btn-info">Home</button>
+      </h1>
+      <h1 class="issue-header">Doctors by Issue
+        <button type="button" class="btn return-home btn-info">Home</button>
+      </h1>
+      <h1 class="name-header">Doctors by Name
+        <button type="button" class="btn return-home btn-info">Home</button>
+      </h1>
+    </div>
+    <div class="row">
+      <div class="col-sm-4 col-md-4">
+        <form id="issue-form">
+          <div class="form-group">
+            <label for="issue">Enter Medical Issue</label>
+            <input type="text" id="issue" class="form-control" required>
+          </div>
+          <button type="submit" class="btn btn-info">Search</button>
+        </form>
+      </div>
+      <div class="well col-sm-4 col-md-4">
+        <form id="name-form">
+          <div class="form-group">
+            <label for="issue">Enter Doctor's Name</label>
+            <input type="text" id="name" class="form-control" required>
+          </div>
+          <button type="submit" class="btn btn-info">Search</button>
+        </form>
+      </div>
+      <div class="well col-sm-4 col-md-4">
+        <div class="all-doctors">
+          <p class="search">All Searches will list 100 doctors in a 100 mile radius of Seattle.</p>
+          <button type="button" name="button" class="btn all btn-info">Local Doctors</button>
+        </div>
       </div>
     </div>
-  </body>
+    <div class="errors">
+    </div>
+    <div id="wait">
+      <center>
+        <img src="images/loading-doctors.gif" alt="Hospital Gif">
+      </center>
+    </div>
+    <div class="results-container">
+      <ul id="doctor-results" class="row equal">
+
+      </ul>
+    </div>
+  </div>
+</body>
+
 </html>

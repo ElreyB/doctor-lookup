@@ -2,7 +2,19 @@ import { apiKey } from "./../.env";
 import { lineCreater } from "./../helper.js";
 
 export class DoctorLookup {
-  constructor() {}
+  constructor(options = {}) {
+    this.name = options.name;
+    this.issue = options.issue
+  }
+
+  setName(nameToSet){
+    this.name = { name: nameToSet };
+  }
+
+  setIssue(issueToSet){
+    this.issue = { issue: issueToSet };
+  }
+
   getDoctors() {
     $.get(
       `https://api.betterdoctor.com/2016-03-01/doctors?location=47.608013, -122.335167,100&skip=0&limit=100&user_key=${apiKey}`
@@ -14,9 +26,9 @@ export class DoctorLookup {
       .errorsHelper(errors);
   }
 
-  getByIssue(issue) {
+  getByIssue() {
     $.get(
-      `https://api.betterdoctor.com/2016-03-01/doctors?query=${issue}&location=47.608013, -122.335167,100&skip=0&limit=100&user_key=${apiKey}`
+      `https://api.betterdoctor.com/2016-03-01/doctors?query=${this.issue}&location=47.608013, -122.335167,100&skip=0&limit=100&user_key=${apiKey}`
     )
       .then(function(response) {
         const doctorsByIssue = response.data;
@@ -32,9 +44,9 @@ export class DoctorLookup {
       });
   }
 
-  getByName(name) {
+  getByName() {
     $.get(
-      `https://api.betterdoctor.com/2016-03-01/doctors?name=${name}&location=47.608013%2C%20-122.335167%2C100&skip=0&limit=40&user_key=${apiKey}`
+      `https://api.betterdoctor.com/2016-03-01/doctors?name=${this.name}&location=47.608013%2C%20-122.335167%2C100&skip=0&limit=40&user_key=${apiKey}`
     )
       .then(function(response) {
         const doctorsByName = response.data;
