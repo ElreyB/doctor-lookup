@@ -1,5 +1,5 @@
 import { apiKey } from "./../.env";
-import { lineCreator } from "./../helper.js";
+import { lineCreator, error } from "./../helper.js";
 
 export class DoctorLookup {
   constructor(options = {}) {
@@ -41,7 +41,7 @@ export class DoctorLookup {
           );
         }
       })
-      .errorsHelper(errors);
+      .fail(error);
   }
 
   getByName() {
