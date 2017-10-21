@@ -1,8 +1,11 @@
+var apiKey = require('./../.env').apiKey;
+
 export class DoctorLookup {
   constructor(){
   }
   getDoctors(){
-    $.get(`https://api.betterdoctor.com/2016-03-01/doctors?location=47.608013, -122.335167,100&skip=0&limit=100&user_key=3df2d26e3fe30c15f597ce18fedf4144`)
+    console.log(apiKey);
+    $.get(`https://api.betterdoctor.com/2016-03-01/doctors?location=47.608013, -122.335167,100&skip=0&limit=100&user_key=${apiKey}`)
     .then(function(response){
       const doctors = response.data;
       doctors.forEach(function(doctor){
@@ -24,7 +27,7 @@ export class DoctorLookup {
   }
 
   getByIssue(issue){
-    $.get(`https://api.betterdoctor.com/2016-03-01/doctors?query=${issue}&location=47.608013, -122.335167,100&skip=0&limit=100&user_key=3df2d26e3fe30c15f597ce18fedf4144`)
+    $.get(`https://api.betterdoctor.com/2016-03-01/doctors?query=${issue}&location=47.608013, -122.335167,100&skip=0&limit=100&user_key=${apiKey}`)
     .then(function(response){
       const doctors = response.data;
       if(typeof doctors[0] !== 'undefined'){
@@ -50,7 +53,7 @@ export class DoctorLookup {
   }
 
   getByName(name){
-    $.get(`https://api.betterdoctor.com/2016-03-01/doctors?name=${name}&location=47.608013%2C%20-122.335167%2C100&skip=0&limit=40&user_key=3df2d26e3fe30c15f597ce18fedf4144`)
+    $.get(`https://api.betterdoctor.com/2016-03-01/doctors?name=${name}&location=47.608013%2C%20-122.335167%2C100&skip=0&limit=40&user_key=${apiKey}`)
     .then(function(response){
       const doctors = response.data;
       if(typeof doctors[0] !== 'undefined'){
