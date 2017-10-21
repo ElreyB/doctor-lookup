@@ -22,3 +22,11 @@ function lineCreater(doctors) {
     );
   });
 }
+
+function errorsHelper(errors){
+	fail(function(error) {
+        $(".errors").text(
+          `There was an error processing your request: ${error.responseText}. Please try again.`
+		);
+	}
+}

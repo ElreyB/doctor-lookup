@@ -2,7 +2,8 @@
   margin-top: 10px;
 }
 
-#wait, .results-container {
+#wait,
+.results-container {
   display: none;
 }
 
@@ -26,4 +27,8 @@ p.search {
 
 .return-home {
   float: right;
+}
+
+span.liner-header {
+  text-align: center;
 }

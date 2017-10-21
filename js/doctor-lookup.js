@@ -11,11 +11,7 @@ export class DoctorLookup {
         const doctorsByIssue = response.data;
         lineCreater(doctorsByIssue);
       })
-      .fail(function(error) {
-        $(".errors").text(
-          `There was an error processing your request: ${error.responseText}. Please try again.`
-        );
-      });
+      .errorsHelper(errors);
   }
 
   getByIssue(issue) {
@@ -32,10 +28,7 @@ export class DoctorLookup {
           );
         }
       })
-      .fail(function(error) {
-        $(".errors").text(
-          `There was an error processing your request: ${error.responseText}. Please try again.`
-        );
+      .errorsHelper(errors);
       });
   }
 
@@ -53,11 +46,7 @@ export class DoctorLookup {
           );
         }
       })
-      .fail(function(error) {
-        $(".errors").text(
-          `There was an error processing your request: ${error.responseText}. Please try again.`
-        );
-      });
+      .errorsHelper(errors);
   }
 
   static booleanConverter(booleanResponse) {
