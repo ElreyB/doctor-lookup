@@ -1,4 +1,4 @@
-function lineCreater(doctors) {
+function lineCreator(doctors) {
   doctors.forEach(function(doctor) {
     $("#doctor-results").append(
       `<li class="well col-sm-4 col-md-4">
@@ -8,11 +8,11 @@ function lineCreater(doctors) {
 				<p>${doctor.practices[0].visit_address.street}</p> <p>${doctor.practices[0]
         .visit_address.city},${doctor.practices[0].visit_address.state} ${doctor
         .practices[0].visit_address.zip}</p>
-				<p>${DoctorLookup.phoneNumberConverter(
+				<p>${phoneNumberConverter(
           doctor.practices[0].phones[0].number
         )}</p>
 				<div class="web-container">
-				<p>Accepting New Patients: ${DoctorLookup.booleanConverter(
+				<p>Accepting New Patients: ${booleanConverter(
           doctor.practices[0].accepts_new_patients
         )}</p>
 				<a href=${doctor.practices[0]
@@ -29,4 +29,17 @@ function errorsHelper(errors){
           `There was an error processing your request: ${error.responseText}. Please try again.`
 		);
 	}
+}
+
+booleanConverter(booleanResponse) {
+  return booleanResponse ? "Yes" : "No";
+}
+
+phoneNumberConverter(phoneNumber) {
+  let convertedNumber;
+  let numbers = phoneNumber.split("");
+  numbers.splice(3, 0, "-");
+  numbers.splice(7, 0, "-");
+  convertedNumber = numbers.join("");
+  return convertedNumber;
 }
