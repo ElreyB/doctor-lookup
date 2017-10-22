@@ -3,7 +3,7 @@ function clearList() {
   $("ul#doctor-results").empty();
 }
 
-function hideheaders() {
+function hideHeaders() {
   $(".main-header, .area-header, .issue-header, .name-header").addClass("hide");
 }
 
@@ -22,7 +22,7 @@ $(document).ready(function() {
 
   $(".all").click(function() {
     clearList();
-    hideheaders();
+    hideHeaders();
     $(".area-header").removeClass("hide");
     doctorsResult.getDoctors();
   });
