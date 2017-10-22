@@ -21,6 +21,12 @@ export function lineCreator(doctors) {
   });
 }
 
+export function createOptions(conditions) {
+  conditions.forEach(function(condition) {
+    $("#issue-options").append(`<option>${condition.name}</option>`);
+  });
+}
+
 export function error() {
   $(".errors").text(
     `There was an error processing your request: ${error.responseText}. Please try again.`

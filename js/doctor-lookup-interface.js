@@ -1,5 +1,5 @@
 import { DoctorLookup } from "./../js/doctor-lookup.js";
-function clearList() {
+function clearResults() {
   $("ul#doctor-results").empty();
 }
 
@@ -9,6 +9,7 @@ function hideHeaders() {
 
 $(document).ready(function() {
   const doctorsResult = new DoctorLookup();
+  doctorsResult.getConditions();
 
   $(".area-header, .issue-header, .name-header").addClass("hide");
 
@@ -21,7 +22,7 @@ $(document).ready(function() {
   });
 
   $(".all").click(function() {
-    clearList();
+    clearResults();
     hideHeaders();
     $(".area-header").removeClass("hide");
     doctorsResult.getDoctors();
@@ -29,22 +30,20 @@ $(document).ready(function() {
 
   $("form#issue-form").submit(function(e) {
     e.preventDefault();
-    clearList();
-    hideheaders();
+    clearResults();
+    hideHeaders();
     $(".issue-header").removeClass("hide");
-    const userIssueInput = $("input#name").val();
-    doctorsResult.setIssue(userIssueInput);
-    doctorsResult.getByIssue();
+    const userIssueInput = $("select#issue-options").val();
+    doctorsResult.getByIssue(userIssueInput);
   });
 
   $("form#name-form").submit(function(e) {
     e.preventDefault();
-    clearList();
-    hideheaders();
+    clearResults();
+    hideHeaders();
     $(".name-header").removeClass("hide");
     const userDoctorNameInput = $("input#name").val();
-    doctorsResult.setName(userDoctorNameInput);
-    doctorsResult.getByName();
+    doctorsResult.getByName(userDoctorNameInput);
   });
 
   $("button.return-home").click(function() {

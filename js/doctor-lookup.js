@@ -1,20 +1,7 @@
 import { apiKey } from "./../.env";
-import { lineCreator, error } from "./../helpers.js";
+import { lineCreator, error, createOptions } from "./../js/helpers.js";
 
 export class DoctorLookup {
-  constructor(options = {}) {
-    this.name = options.name;
-    this.issue = options.issue;
-  }
-
-  setName(nameToSet) {
-    this.name = { name: nameToSet };
-  }
-
-  setIssue(issueToSet) {
-    this.issue = { issue: issueToSet };
-  }
-
   getDoctors() {
     $.get(
       `https://api.betterdoctor.com/2016-03-01/doctors?location=47.608013, -122.335167,100&skip=0&limit=100&user_key=${apiKey}`
@@ -23,13 +10,12 @@ export class DoctorLookup {
         const doctorsByIssue = response.data;
         lineCreator(doctorsByIssue);
       })
-      .fail(error());
+      .fail(error);
   }
 
-  getByIssue() {
+  getByIssue(issue) {
     $.get(
-      `https://api.betterdoctor.com/2016-03-01/doctors?query=${this
-        .issue}&location=47.608013, -122.335167,100&skip=0&limit=100&user_key=${apiKey}`
+      `https://api.betterdoctor.com/2016-03-01/doctors?query=${issue}&location=47.608013, -122.335167,100&skip=0&limit=100&user_key=${apiKey}`
     )
       .then(function(response) {
         const doctorsByIssue = response.data;
@@ -44,10 +30,9 @@ export class DoctorLookup {
       .fail(error);
   }
 
-  getByName() {
+  getByName(name) {
     $.get(
-      `https://api.betterdoctor.com/2016-03-01/doctors?name=${this
-        .name}&location=47.608013%2C%20-122.335167%2C100&skip=0&limit=40&user_key=${apiKey}`
+      `https://api.betterdoctor.com/2016-03-01/doctors?name=${name}&location=47.608013%2C%20-122.335167%2C100&skip=0&limit=40&user_key=${apiKey}`
     )
       .then(function(response) {
         const doctorsByName = response.data;
@@ -59,12 +44,16 @@ export class DoctorLookup {
           );
         }
       })
-      .fail(error(){
-
-      });
+      .fail(error);
   }
-
-  getConditions(){
-
+  getConditions() {
+    $.get(
+      `https://api.betterdoctor.com/2016-03-01/conditions?fields=name&user_key=3df2d26e3fe30c15f597ce18fedf4144`
+    )
+      .then(function(response) {
+        const conditionsByName = response.data;
+        createOptions(conditionsByName);
+      })
+      .fail(error);
   }
 }
