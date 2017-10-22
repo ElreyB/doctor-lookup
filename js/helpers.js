@@ -2,7 +2,9 @@ export function lineCreator(doctors) {
   doctors.forEach(function(doctor) {
     $("#doctor-results").append(
       `<li class="well col-sm-2 col-md-4">
-			<center><img src=${doctor.profile.image_url} alt="Doctor's photo"></center>
+			<center><img src=${checkImage(
+        doctor.profile.image_url
+      )} alt="Doctor's photo"></center>
 				<p>Dr. ${doctor.profile.first_name} ${doctor.profile.last_name},${doctor
         .profile.title}</p>
 				<p>${doctor.practices[0].visit_address.street}</p> <p>${doctor.practices[0]
@@ -25,6 +27,11 @@ export function createOptions(conditions) {
   conditions.forEach(function(condition) {
     $("#issue-options").append(`<option>${condition.name}</option>`);
   });
+}
+
+function checkImage(imageUrl) {
+  const subImage = "images/no-headshot.jpg";
+  return imageUrl.match(/.png/i) ? subImage : imageUrl;
 }
 
 export function error() {
