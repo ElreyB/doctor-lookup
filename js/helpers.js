@@ -1,12 +1,12 @@
 export function lineCreator(doctors) {
   doctors.forEach(function(doctor) {
     $("#doctor-results").append(
-      `<li class="well col-sm-2 col-md-4">
-			<center><img src=${checkImage(
-        doctor.profile.image_url
-      )} alt="Doctor's photo"></center>
-				<p>Dr. ${doctor.profile.first_name} ${doctor.profile.last_name},${doctor
-        .profile.title}</p>
+      `<li class="well col-sm-6">
+        <img src=${checkImage(doctor.profile.image_url)} alt="Doctor's photo">
+        <a href=${doctor.practices[0].website}>
+        <h4>Dr. ${doctor.profile.first_name} ${doctor.profile
+        .last_name},${doctor.profile.title}</h4>
+        </a>
 				<p>${doctor.practices[0].visit_address.street}</p> <p>${doctor.practices[0]
         .visit_address.city},${doctor.practices[0].visit_address.state} ${doctor
         .practices[0].visit_address.zip}</p>
@@ -15,8 +15,6 @@ export function lineCreator(doctors) {
 				<p>Accepting New Patients: ${booleanConverter(
           doctor.practices[0].accepts_new_patients
         )}</p>
-				<a href=${doctor.practices[0]
-          .website}><button type="button" class="btn btn-info">Visit Doctor's Website</button></a>
 				</div>
       </li>`
     );

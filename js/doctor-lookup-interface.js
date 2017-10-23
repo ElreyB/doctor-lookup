@@ -15,6 +15,7 @@ $(document).ready(function() {
 
   $(document).ajaxStart(function() {
     $("#wait").css("display", "block");
+    $(".col-md-9").show();
   });
   $(document).ajaxComplete(function() {
     $("#wait").css("display", "none");

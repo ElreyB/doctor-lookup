@@ -3,7 +3,8 @@
 }
 
 #wait,
-.results-container {
+.results-container,
+.col-md-9 {
   display: none;
 }
 
@@ -31,4 +32,8 @@ p.search {
 
 span.liner-header {
   text-align: center;
+}
+
+img {
+  float: right;
 }

@@ -48,7 +48,7 @@ export class DoctorLookup {
   }
   getConditions() {
     $.get(
-      `https://api.betterdoctor.com/2016-03-01/conditions?fields=name&user_key=3df2d26e3fe30c15f597ce18fedf4144`
+      `https://api.betterdoctor.com/2016-03-01/conditions?fields=name&user_key=${apiKey}`
     )
       .then(function(response) {
         const conditionsByName = response.data;
