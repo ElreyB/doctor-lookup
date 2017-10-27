@@ -50,3 +50,8 @@ function phoneNumberConverter(phoneNumber) {
   convertedNumber = numbers.join("");
   return convertedNumber;
 }
+
+function websiteFitter(website) {
+  let 
+  return website === 'undefined' ?
+}
