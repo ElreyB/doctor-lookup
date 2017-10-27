@@ -35,6 +35,7 @@ $(document).ready(function() {
     hideHeaders();
     $(".issue-header").removeClass("hide");
     const userIssueInput = $("select#issue-options").val();
+    $("#issue").text(userIssueInput);
     doctorsResult.getByIssue(userIssueInput);
   });
 

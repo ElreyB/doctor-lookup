@@ -1,8 +1,8 @@
 export function lineCreator(doctors) {
   doctors.forEach(function(doctor) {
     $("#doctor-results").append(
-      `<li class="well col-sm-6">
-        <img src=${checkImage(doctor.profile.image_url)} alt="Doctor's photo">
+      `<li class="well col-sm-12">
+        <img class="doctor-image" src=${checkImage(doctor.profile.image_url)} alt="Doctor's photo">
         <a href=${doctor.practices[0].website}>
         <h4>Dr. ${doctor.profile.first_name} ${doctor.profile
         .last_name},${doctor.profile.title}</h4>
