@@ -5,7 +5,7 @@ export function lineCreator(doctors) {
       <div class="row">
         <div class="col-md-6 doctor-info">
           <img class="doctor-image" src=${checkImage(doctor.profile.image_url)} alt="Doctor's photo">
-          <a href=${doctor.practices[0].website}>
+          <a href="${websiteFitter(doctor.practices[0].website)}">
           <h4 class="doctor-name">Dr. ${doctor.profile.first_name} ${doctor.profile
             .last_name},${doctor.profile.title}</h4>
             </a>
@@ -58,7 +58,7 @@ function phoneNumberConverter(phoneNumber) {
   return convertedNumber;
 }
 
-// function websiteFitter(website) {
-//   let
-//   return website === 'undefined' ?
-// }
+function websiteFitter(doctorWebsite) {
+  console.log(doctorWebsite);
+  return typeof doctorWebsite === 'undefined' ? "#" : doctorWebsite;
+}
