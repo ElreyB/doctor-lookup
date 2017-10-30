@@ -53,3 +53,12 @@ li.col-md-8 {
 p {
   font-size: 16px;
 }
+
+#specialties-list {
+  overflow: auto;
+  height: 370px;
+}
+
+button.specialty {
+  margin-top: 20px;
+}
