@@ -57,10 +57,12 @@ $(document).ready(function() {
     clearResults();
     hideHeaders();
     $(".name-header").removeClass("hide");
-    const userSpecialtyListInput = $(
-      "input:checkbox[name=specialty-list]:checked"
-    ).val();
-    doctorsResult.getBySpecialty(userSpecialtyListInput);
+    let userSpecialtyListInput = "";
+    $("input:checkbox[name=specialty-list]:checked").each(function() {
+      userSpecialtyListInput += $(this).val() + ",";
+    });
+    doctorsResult.getBySpecialty(userSpecialtyListInput.slice(0, -1));
+    $("input[type=checkbox]").prop("checked", false);
   });
 
   $("button.return-home").click(function() {

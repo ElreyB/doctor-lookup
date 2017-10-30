@@ -53,14 +53,13 @@ export class DoctorLookup {
   }
 
   getBySpecialty(specialtyList) {
-    const specialtyString = specialtyList.join(",");
     $.get(
-      `https://api.betterdoctor.com/2016-03-01/doctors?specialty_uid=${specialtyString}&location=47.608013%2C%20-122.335167%2C100&skip=0&limit=100&user_key=${apiKey}`
+      `https://api.betterdoctor.com/2016-03-01/doctors?specialty_uid=${specialtyList}&location=47.608013%2C%20-122.335167%2C100&skip=0&limit=100&user_key=${apiKey}`
     )
       .then(function(response) {
-        const doctorsByName = response.data;
-        if (typeof doctorsByName[0] !== "undefined") {
-          lineCreator(doctorsByName);
+        const doctorsBySpecialty = response.data;
+        if (typeof doctorsBySpecialty[0] !== "undefined") {
+          lineCreator(doctorsBySpecialty);
         } else {
           $("#doctor-results").append(
             `<li><span class="line-header">Sorry! Currently there are no doctors in the area that meet you query. Please, try a different entry 👨‍⚕️ 👩‍⚕️.</span></li><br>`
