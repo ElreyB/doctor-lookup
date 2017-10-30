@@ -9,7 +9,11 @@ function hideHeaders() {
 
 $(document).ready(function() {
   const doctorsResult = new DoctorLookup();
+
   doctorsResult.getConditions();
+  setTimeout(() => {
+    doctorsResult.getSpecialties();
+  }, 1000);
 
   $(".area-header, .issue-header, .name-header").addClass("hide");
 
@@ -46,6 +50,17 @@ $(document).ready(function() {
     $(".name-header").removeClass("hide");
     const userDoctorNameInput = $("input#name").val();
     doctorsResult.getByName(userDoctorNameInput);
+  });
+
+  $("form#specialties-form").submit(function(e) {
+    e.preventDefault();
+    clearResults();
+    hideHeaders();
+    $(".name-header").removeClass("hide");
+    const userSpecialtyListInput = $(
+      "input:checkbox[name=specialty-list]:checked"
+    ).val();
+    doctorsResult.getBySpecialty(userSpecialtyListInput);
   });
 
   $("button.return-home").click(function() {

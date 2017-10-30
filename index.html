@@ -26,26 +26,40 @@
 		</div>
 		<div class="row">
 			<div class="col-md-3">
-				<form id="issue-form">
-					<div class="form-group">
-						<label for="issue">What's your Medical Issue</label>
-						<select id="issue-options" class="form-control">
+				<div class="page-header">
+					<form id="issue-form">
+						<div class="form-group">
+							<label for="issue">What's your Medical Issue</label>
+							<select id="issue-options" class="form-control">
 
-						</select>
-						<!-- <input type="text" id="issue" class="form-control" required> -->
+							</select>
+							<!-- <input type="text" id="issue" class="form-control" required> -->
+						</div>
+						<button type="submit" class="btn btn-info">Search</button>
+					</form>
+				</div>
+				<div class="page-header">
+					<form id="name-form">
+						<div class="form-group">
+							<label for="issue">Enter Doctor's Name</label>
+							<input type="text" id="name" class="form-control" required>
+						</div>
+						<button type="submit" class="btn btn-info">Search</button>
+					</form>
+				</div>
+				<div class="page-header">
+					<div class="all-doctors">
+						<p class="search">All Searches will list 100 doctors in a 100 mile radius of Seattle.</p>
+						<button type="button" name="button" class="btn all btn-info">Local Doctors</button>
 					</div>
-					<button type="submit" class="btn btn-info">Search</button>
-				</form>
-				<form id="name-form">
-					<div class="form-group">
-						<label for="issue">Enter Doctor's Name</label>
-						<input type="text" id="name" class="form-control" required>
-					</div>
-					<button type="submit" class="btn btn-info">Search</button>
-				</form>
-				<div class="all-doctors">
-					<p class="search">All Searches will list 100 doctors in a 100 mile radius of Seattle.</p>
-					<button type="button" name="button" class="btn all btn-info">Local Doctors</button>
+				</div>
+				<div class="page-header">
+					<form id="specialties-form">
+						<div id="specialties-list">
+
+						</div>
+						<button type="submit" class="btn btn-info">Doctors</button>
+					</form>
 				</div>
 			</div>
 			<div class="col-md-9">
